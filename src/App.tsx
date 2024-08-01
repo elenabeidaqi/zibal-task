@@ -1,5 +1,11 @@
+import { PaymentTable } from "./components";
+
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <PaymentTable />
+    </div>
+  );
 }
 
 export default App;
