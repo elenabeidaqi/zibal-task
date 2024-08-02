@@ -17,7 +17,7 @@ export const TransactionTable: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef<InputRef>(null);
- 
+
   const handleSearch = (
     selectedKeys: string[],
     confirm: FilterDropdownProps["confirm"],
@@ -36,12 +36,11 @@ export const TransactionTable: React.FC = () => {
   const copyToClipBoard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      message.success('با موفقیت کپی شد');
+      message.success("با موفقیت کپی شد");
     } catch (err) {
-      message.error('دوباره سعی کنید');
+      message.error("دوباره سعی کنید");
     }
   };
-
 
   const getColumnSearchProps = (
     dataIndex: DataIndex
@@ -56,7 +55,6 @@ export const TransactionTable: React.FC = () => {
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -76,25 +74,14 @@ export const TransactionTable: React.FC = () => {
             size="small"
             style={{ width: 90 }}
           >
-            Search
+            جستجو
           </Button>
           <Button
             onClick={() => clearFilters && handleReset(clearFilters)}
             size="small"
             style={{ width: 90 }}
           >
-            Reset
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={() => {
-              confirm({ closeDropdown: false });
-              setSearchText((selectedKeys as string[])[0]);
-              setSearchedColumn(dataIndex);
-            }}
-          >
-            Filter
+            پاک کردن
           </Button>
           <Button
             type="link"
@@ -103,13 +90,13 @@ export const TransactionTable: React.FC = () => {
               close();
             }}
           >
-            close
+            بسته شدن
           </Button>
         </Space>
       </div>
     ),
     filterIcon: (filtered: boolean) => (
-      <SearchOutlined style={{ color: filtered ? "#1677ff" : undefined }} />
+      <SearchOutlined style={{ color: filtered ? "#1677ff" : "#475569" }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -193,10 +180,7 @@ export const TransactionTable: React.FC = () => {
       ...getColumnSearchProps("trackId"),
       render: (text) => (
         <div className="flex justify-center items-center gap-2">
-          <div
-            className="cursor-pointer"
-            onClick={() => copyToClipBoard(text)}
-          >
+          <div className="cursor-pointer" onClick={() => copyToClipBoard(text)}>
             {" "}
             <Copy />
           </div>
@@ -207,14 +191,16 @@ export const TransactionTable: React.FC = () => {
   ];
 
   return (
-   <>
-    <Table
-      //@ts-ignore
-      columns={columns}
-      dataSource={transactionData.data}
-      pagination={false}
-    />
-    <div className="self-start persian-number mt-4" >تعداد نتابج :  {transactionData.data.length}</div>
-   </>
+    <>
+      <Table
+        //@ts-ignore
+        columns={columns}
+        dataSource={transactionData.data}
+        pagination={false}
+      />
+      <div className="self-start persian-number mt-4">
+        تعداد نتابج : {searchText ? "1" : transactionData.data.length}
+      </div>
+    </>
   );
 };
