@@ -1,9 +1,11 @@
-import { PaymentTable } from "./components";
+import { TransactionLayout } from "./layout";
+import './index.css';
 
 function App() {
   return (
-    <div>
-      <PaymentTable />
+    <div className="py-40 px-5">
+      
+      <TransactionLayout />
     </div>
   );
 }

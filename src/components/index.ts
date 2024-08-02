@@ -1,1 +1,2 @@
-export * from "./paymentTable";
+export * from "./transactionTable";
+export * from "./walletModal";

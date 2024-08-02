@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: iran-sans-fa;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/IRANSans(FaNum).ttf') format("truetype");
+  }
+  
+  body {
+    overflow-x: hidden !important;
+    font-family: iran-sans-en !important;
+    direction: rtl;
+  }
+  
+  .persian-number {
+    font-family: iran-sans-fa !important;
+  }
+
+
+.card-number{
+  direction: ltr !important;
+}
+  
